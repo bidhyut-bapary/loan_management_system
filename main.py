@@ -16,6 +16,7 @@ def view_members():
     if not members:
         print("\n⚠️ No mMembers Found!\n")
         return
+
     print("\n--- Member List ---\n")
     for member in members:
         print(f"ID:{member['member_id']} | Name:{member['name']} | Phone:{member['phone']} | Address:{member['address']} | Joining_date:{member['joining_date']} | Status:{member['status']}")
