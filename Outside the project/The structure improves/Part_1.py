@@ -12,43 +12,16 @@ def add_member(member_id, name, phone, address, joining_date, status="active"):
     members.append(member)
     print(f"\n✅ Member added successfully: {name}\n")
 
-# view_member function
 def view_members():
     if not members:
-        print("\n⚠️ No mMembers Found!\n")
+        print("\n⚠️ No Members Found!\n")
         return
 
     print("\n--- Member List ---\n")
     for member in members:
         print(f"ID:{member['member_id']} | Name:{member['name']} | Phone:{member['phone']} | Address:{member['address']} | Joining_date:{member['joining_date']} | Status:{member['status']}")
-        
-        print("\n ------------------")
+        print("\n -------------")
 
-#Add_Loan Function---------
-loans = []
-def add_loan(loan_id, member_id, loan_amount, loan_date, status='active'):
-    loan = {
-        "loan_id":loan_id,
-        "member_id":member_id,
-        "loan_amount":loan_amount,
-        "loan_date":loan_date,
-        "status":status
-    }
-    loans.append(loan)
-    print(f"\n Loan added successfully!:{loan_id}\n")
-
-# view_Loans function
-def view_loans():
-    if not loans:
-        print("\n No Loans found!\n")
-        return
-    
-    print("\n ---Loan List ---\n")
-    for loan in loans:
-        print(f"Loan ID:{loan['loan_id']} | Member ID: {loan['member_id']} | Loan Amount: {loan['loan_amount']} | Loan Date: {loan['loan_date']} | Status: {loan['status']}")
-        print("\n ------------------")
-
-# add_member function call
 def handle_add_member():
     found = False
     member_id = input("Enter member_id:")
@@ -78,36 +51,6 @@ def handle_add_member():
                         # add member ফাংশন কল
                         add_member(member_id, name, phone, address, joining_date)
 
-# Add Loan Function
-def handle_add_loan():
-    loan_id = input("Enter Loan ID:")
-    if not loan_id:
-        print("Loan ID is required!")
-    else:
-        member_id =input("Enter Member ID:")
-        if not member_id:
-            print("Member ID is required!")
-        else:
-            found = False
-            for m in members:
-                if m['member_id'] == member_id:
-                    found = True
-                    break
-            if not found:
-                print("Error: ID does not exist!")
-            else:
-                loan_amount = input("Enter Loan Amount:")
-                if not loan_amount:
-                    print("Loan Amount is required!")
-                else:
-                    loan_date = input("Enter Loan Date(dd-mm-yyyy)")
-                    if not loan_date:
-                        print("Loan Date is required!")
-                    else:
-                        # add loan function call
-                        add_loan(loan_id,member_id,loan_amount,loan_date)
-
-# Update phone function
 def handle_update_phone():
     search_id = input("Enter Member ID to Update Phone:")
     if not search_id:
@@ -124,7 +67,6 @@ def handle_update_phone():
         if not found:
             print("Member ID not found!")
 
-# delete member function
 def handle_delete_member():
     search_id = input("Enter Member ID to Delete:")
     if not search_id:
@@ -140,7 +82,6 @@ def handle_delete_member():
         if not found:
             print("Member ID not found!")
 
-
 # Main Menu Loop
 while True:
     print("\n ---Main Menu ---")
@@ -148,33 +89,24 @@ while True:
     print("2. View Members")
     print("3. Update Phone Number")
     print("4. Delete Member")
-    print("5. Add Loans")
-    print("6. View Loans")
-    print("7. Exit")
+    print("5. Exit")
 
-# choice handle functions
-    choice = input ("Enter your choice(1-7): ")
+    choice = input("Enter your choice(1-4): ")
 
-# choice handle functions
     if choice == "1":
         handle_add_member()
+
     elif choice == "2":
         view_members()
+    
     elif choice == "3":
-        handle_update_phone()       
+        handle_update_phone()
+
     elif choice == "4":
         handle_delete_member()
+
     elif choice == "5":
-        handle_add_loan()
-    elif choice == "6":
-        view_loans()
-    elif choice == "7":
         print("Goodbye!")
         break
     else:
         print("Invalid Choice")
-
-
-
-
-        

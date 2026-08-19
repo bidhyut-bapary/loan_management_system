@@ -1,0 +1,28 @@
+Delete Member
+
+তুমি Update Member-এ যে pattern শিখেছো (search → match → action), Delete-ও ঠিক একই রকম। শুধু s['phone'] = new_phone এর জায়গায় members.remove(s) ব্যবহার হবে।
+
+Skeleton (তুমি ভরবে)
+python
+elif choice == "5":
+    search_id = input("Enter Member ID to Delete: ")
+    if not search_id:
+        print("Member ID is required!")
+    else:
+        found = False
+        for s in members:
+            if s['member_id'] == search_id:
+                ________.remove(________)     # ১. কোন list থেকে, কাকে remove করবো?
+                found = True
+                print("Deleted Successfully!")
+                break
+        if not found:
+            print("Member ID not found!")
+Hint
+
+১ নম্বরে:
+
+প্রথম blank-এ — আমাদের main list-এর নাম কী?
+দ্বিতীয় blank-এ — এই মুহূর্তে loop variable s কী represent করছে? (এটাই তো matching member)
+
+এই দুটো ভরে, তোমার menu-তে option "4. Exit"-কে "5. Exit" করে, নতুন "4. Delete Member" option যোগ করে
