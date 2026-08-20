@@ -1,167 +1,30 @@
-members = []
-
-def add_member(member_id, name, phone, address, joining_date, status="active"):
-    member = {
-        "member_id": member_id,
-        "name": name,
-        "phone": phone,
-        "address": address,
-        "joining_date": joining_date,
-        "status": status
-    }
-    members.append(member)
-    print(f"\n✅ Member added successfully: {name}\n")
-
-# view_member function
-def view_members():
-    if not members:
-        print("\n⚠️ No mMembers Found!\n")
-        return
-
-    print("\n--- Member List ---\n")
-    for member in members:
-        print(f"ID:{member['member_id']} | Name:{member['name']} | Phone:{member['phone']} | Address:{member['address']} | Joining_date:{member['joining_date']} | Status:{member['status']}")
-        
-        print("\n ------------------")
-
-#Add_Loan Function---------
-loans = []
-def add_loan(loan_id, member_id, loan_amount, loan_date, status='active'):
-    loan = {
-        "loan_id":loan_id,
-        "member_id":member_id,
-        "loan_amount":loan_amount,
-        "loan_date":loan_date,
-        "status":status
-    }
-    loans.append(loan)
-    print(f"\n Loan added successfully!:{loan_id}\n")
-
-# view_Loans function
-def view_loans():
-    if not loans:
-        print("\n No Loans found!\n")
-        return
-    
-    print("\n ---Loan List ---\n")
-    for loan in loans:
-        print(f"Loan ID:{loan['loan_id']} | Member ID: {loan['member_id']} | Loan Amount: {loan['loan_amount']} | Loan Date: {loan['loan_date']} | Status: {loan['status']}")
-        print("\n ------------------")
-
-# add_member function call
-def handle_add_member():
-    found = False
-    member_id = input("Enter member_id:")
-    if not member_id:
-        print("Member ID is required!")
-    else:
-        for i in members:
-            if i['member_id'] == member_id:
-                found = True
-                break
-        if found:
-            print("Error: Id already Exist! Please use different Id!")
-        else:
-            name = input("Enter your name:")
-            if not name:
-                print("Name is required!")
-            else:
-                phone = input("Enter your phone:")
-                if not phone:
-                    print("Phone is required!")
-                else:
-                    address = input("Enter your address:")
-                    joining_date = input("Enter Joining Date(dd-mm-yyyy):")
-                    if not joining_date:
-                        print("Joining Date is required!")
-                    else:
-                        # add member ফাংশন কল
-                        add_member(member_id, name, phone, address, joining_date)
-
-# Add Loan Function
-def handle_add_loan():
-    loan_id = input("Enter Loan ID:")
-    if not loan_id:
-        print("Loan ID is required!")
-    else:
-        member_id =input("Enter Member ID:")
-        if not member_id:
-            print("Member ID is required!")
-        else:
-            found = False
-            for m in members:
-                if m['member_id'] == member_id:
-                    found = True
-                    break
-            if not found:
-                print("Error: ID does not exist!")
-            else:
-                loan_amount = input("Enter Loan Amount:")
-                if not loan_amount:
-                    print("Loan Amount is required!")
-                else:
-                    loan_date = input("Enter Loan Date(dd-mm-yyyy)")
-                    if not loan_date:
-                        print("Loan Date is required!")
-                    else:
-                        # add loan function call
-                        add_loan(loan_id,member_id,loan_amount,loan_date)
-
-# Update phone function
-def handle_update_phone():
-    search_id = input("Enter Member ID to Update Phone:")
-    if not search_id:
-        print("Member ID is required!")
-    else:
-        new_phone = input("Enter new phone number:")
-        found = False
-        for s in members:
-            if s['member_id'] == search_id:
-                s['phone'] = new_phone
-                found = True
-                print("Updated Successfully!")
-                break
-        if not found:
-            print("Member ID not found!")
-
-# delete member function
-def handle_delete_member():
-    search_id = input("Enter Member ID to Delete:")
-    if not search_id:
-        print("Member ID is required!")
-    else:
-        found = False
-        for s in members:
-            if s['member_id'] == search_id:
-                members.remove(s)
-                found = True
-                print("Deleted Successfully!")
-                break
-        if not found:
-            print("Member ID not found!")
-
+from members import members, add_member, view_members, handle_add_member, handle_update_phone, handle_delete_member
+from loans import loans, add_loan, view_loans, handle_add_loan
+from payments import payments, add_payment, view_payments, get_total_payment, get_outstanding_balance, handle_add_payment, handle_check_total_payment, handle_check_balance
 
 # Main Menu Loop
 while True:
-    print("\n ---Main Menu ---")
-    print("1. Add Members")
-    print("2. View Members")
-    print("3. Update Phone Number")
-    print("4. Delete Member")
-    print("5. Add Loans")
-    print("6. View Loans")
-    print("7. Exit")
+    print("\n--- Main Menu ---")
+    print("1.  Add Member")
+    print("2.  View Members")
+    print("3.  Update Phone Number")
+    print("4.  Delete Member")
+    print("5.  Add Loan")
+    print("6.  View Loans")
+    print("7.  Add Payment")
+    print("8.  View Payments")
+    print("9.  Check Total Payment")
+    print("10. Check Balance")
+    print("11. Exit")
 
-# choice handle functions
-    choice = input ("Enter your choice(1-7): ")
+    choice = input("\nEnter your choice (1-11): ")
 
-# choice handle functions
     if choice == "1":
         handle_add_member()
     elif choice == "2":
         view_members()
     elif choice == "3":
-        handle_update_phone()       
+        handle_update_phone()
     elif choice == "4":
         handle_delete_member()
     elif choice == "5":
@@ -169,12 +32,15 @@ while True:
     elif choice == "6":
         view_loans()
     elif choice == "7":
-        print("Goodbye!")
+        handle_add_payment()
+    elif choice == "8":
+        view_payments()
+    elif choice == "9":
+        handle_check_total_payment()
+    elif choice == "10":
+        handle_check_balance()
+    elif choice == "11":
+        print("\nGoodbye! 👋\n")
         break
     else:
-        print("Invalid Choice")
-
-
-
-
-        
+        print("\n⚠️ Invalid Choice! Please enter 1-11.\n")
