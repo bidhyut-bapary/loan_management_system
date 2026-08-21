@@ -1,0 +1,8 @@
+# .gitignore ফাইলে লেখো:
+__pycache__/
+*.pyc
+
+members.json
+loans.json
+payments.json
+.vscode/

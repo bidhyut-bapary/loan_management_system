@@ -1,0 +1,31 @@
+🧠 এখন পুরো Picture-টা দেখি
+members.py  (independent — কারো উপর নির্ভর করে না)
+     ↑
+     │ import করে
+     │
+loans.py    (members.py-এর উপর নির্ভরশীল)
+     ↑
+     │ import করে
+     │
+payments.py (loans.py-এর উপর নির্ভরশীল, যেটা আবার members.py-এর উপর নির্ভরশীল)
+     ↑
+     │ import করে
+     │
+main.py     (সবগুলোর উপর নির্ভরশীল, কিন্তু নিজে ছোট এবং পরিষ্কার)
+
+এটাকে বলে Dependency Chain — এটাই বাস্তব software-এর architecture কেমন হয় তার একটা ছোট নমুনা।
+
+এখন Full Test করার সময়
+text
+Progress: 50/100
+
+Completed:
+✓ Member + Loan + Payment System — সম্পূর্ণ কার্যকরী
+✓ Multi-file Refactor সম্পূর্ণ (members.py, loans.py, payments.py, main.py) ✅
+✓ Cross-file Import (Dependency Chain) বোঝা এবং প্রয়োগ ✅
+
+Current:
+→ পুরো Refactored System একসাথে Test করা
+
+Next:
+→ Refactor সফল হলে — Git/GitHub-এ push করা

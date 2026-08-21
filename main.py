@@ -2,6 +2,7 @@ from members import members, add_member, view_members, handle_add_member, handle
 from loans import loans, add_loan, view_loans, handle_add_loan
 from payments import payments, add_payment, view_payments, get_total_payment, get_outstanding_balance, handle_add_payment, handle_check_total_payment, handle_check_balance
 
+
 # Main Menu Loop
 while True:
     print("\n--- Main Menu ---")
